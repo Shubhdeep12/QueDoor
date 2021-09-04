@@ -1,13 +1,12 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 var stringSimilarity = require("string-similarity");
 const db = require("../models");
 const mongoose = require("mongoose");
-const { createWorker } = require("tesseract.js");
-const worker = createWorker();
-const { uploader, cloudinaryConfig } = require("../config/cloudinary.config");
+const Tesseract = require("tesseract.js");
+const { cloudinaryConfig } = require("../config/cloudinary.config");
 var v2cloudinary = require("cloudinary").v2;
 
 app.use(cors());
@@ -23,16 +22,8 @@ exports.filter = async (req, res) => {
     if (img.name === undefined || img.name === null) {
       throw Error();
     }
-    await worker.load();
-    await worker.loadLanguage("eng");
-    await worker.initialize("eng");
-    const response = await fetch(img.name);
-    const buffer = await response.buffer();
-
-    const {
-      data: { text },
-    } = await worker.recognize(buffer);
-    imagetext = text;
+    var { data } = await Tesseract.recognize(img.name, "eng");
+    imagetext = data.text;
   } catch (err) {
     //console.log(err);
     img = { name: "", public_id: "" };

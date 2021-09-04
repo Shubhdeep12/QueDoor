@@ -14,6 +14,7 @@ const app = express();
 const { multerUploads } = require("./middlewares/multer");
 const { uploader, cloudinaryConfig } = require("./config/cloudinary.config");
 const path = require("path");
+
 //middleware
 app.use(cors());
 app.use("*", cloudinaryConfig);

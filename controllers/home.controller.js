@@ -2,13 +2,13 @@ const db = require("../models");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const { createWorker } = require("tesseract.js");
-const worker = createWorker();
+//const { createWorker } = require("tesseract.js");
+const Tesseract = require("tesseract.js");
 const mongoose = require("mongoose");
-const fetch = require("node-fetch");
+//const fetch = require("node-fetch");
 require("dotenv").config();
 var v2cloudinary = require("cloudinary").v2;
-const { uploader, cloudinaryConfig } = require("../config/cloudinary.config");
+const { cloudinaryConfig } = require("../config/cloudinary.config");
 
 app.use(cors());
 app.use("*", cloudinaryConfig);
@@ -64,16 +64,8 @@ exports.addPost = async (req, res) => {
       if (img.name === undefined || img.name === null) {
         throw Error();
       }
-      await worker.load();
-      await worker.loadLanguage("eng");
-      await worker.initialize("eng");
-      const response = await fetch(img.name);
-      const buffer = await response.buffer();
-
-      const {
-        data: { text },
-      } = await worker.recognize(buffer);
-      imagetext = text;
+      var { data } = await Tesseract.recognize(img.name, "eng");
+      imagetext = data.text;
     } catch (err) {
       console.log("1" + err);
       img = { name: "", public_id: "" };
@@ -136,21 +128,11 @@ exports.addComment = async (req, res) => {
         throw Error();
       }
 
-      try {
-        await worker.load();
+      // const response = await fetch(comimg.name);
+      // const buffer = await response.buffer();
 
-        await worker.loadLanguage("eng");
-
-        await worker.initialize("eng");
-      } catch (err) {}
-      const response = await fetch(comimg.name);
-      const buffer = await response.buffer();
-
-      const {
-        data: { text },
-      } = await worker.recognize(buffer);
-
-      comimagetext = text;
+      var { data } = await Tesseract.recognize(comimg.name, "eng");
+      comimagetext = data.text;
     } catch (err) {
       console.log(err);
       comimg = { name: "", public_id: "" };
