@@ -1,0 +1,27 @@
+.Filter .filter__bar {
+  background-color: rgb(255, 75, 75);
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 20px 10px;
+}
+.Filter .filter__bar p {
+  font-size: large;
+  font-weight: bold;
+  color: aliceblue;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.Filter .Posts {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.Filter .create {
+  flex: 1.1;
+}
+.Filter .posts {
+  flex: 2;
+}
+.Filter .rightbar {
+  flex: 0.5;
+}

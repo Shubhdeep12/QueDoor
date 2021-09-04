@@ -1,0 +1,84 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  min-width: 200px;
+}
+.create__post {
+  background-color: rgb(199, 199, 199);
+  /* align-items: center; */
+  border-radius: 9px;
+  margin-left: 10px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  max-width: 450px;
+  box-shadow: 4px 4px 4px #a8a7a7;
+  border: 1px solid rgb(199, 199, 199);
+}
+.content .create__post .post__text .text {
+  resize: none;
+  overflow: hidden;
+  max-width: 450px;
+  height: 100px;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 15px;
+  margin: 10px 10px;
+  width: 90%;
+  outline: 0ch;
+}
+
+.content .create__post .create__buttons {
+  float: right;
+  position: relative;
+}
+.content .create__post .create__buttons .upload {
+  margin: 5px 1px;
+}
+.content .create__post .create__buttons .uploaded {
+  background-color: #a8a7a7;
+  padding: 5px 5px;
+  font-size: small;
+  border: 1px solid;
+  border-radius: 3px;
+  margin: 5px 5px;
+  top: -7px;
+
+  position: relative;
+}
+.content .create__post .create__buttons .Image,
+.content .create__post .create__buttons .Cross,
+.content .create__post .create__buttons .Radio {
+  margin: 0px 10px;
+  color: rgb(150, 148, 148);
+}
+
+.content .create__post .create__buttons .Image:hover {
+  color: rgb(58, 58, 58);
+  cursor: pointer;
+}
+.content .create__post .create__buttons .Cross:hover,
+.content .create__post .create__buttons .Radio:hover {
+  color: rgb(240, 88, 88);
+  cursor: pointer;
+}
+
+.content .create__post .create__buttons .post__submit {
+  margin: 5px 10px;
+  height: 30px;
+  width: 60px;
+  position: relative;
+  letter-spacing: 1px;
+  top: -7px;
+  border: 1px solid;
+  color: rgb(58, 58, 58);
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.content .create__post .create__buttons .post__submit:hover {
+  color: aliceblue;
+  background-color: rgb(58, 58, 58);
+  border: 1px solid rgb(58, 58, 58);
+}

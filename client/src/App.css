@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: auto;
+  max-width: 1400px;
+
+  font-family: "PT Sans", sans-serif !important;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(158, 158, 158);
+  border-radius: 9px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.Dark {
+  min-height: 100vh;
+}
+body .Dark {
+  background: rgb(253, 253, 253);
+}
+body .Dark {
+  filter: invert(1) hue-rotate(180deg);
+}
+.Dark img {
+  filter: invert(1) hue-rotate(180deg);
+}

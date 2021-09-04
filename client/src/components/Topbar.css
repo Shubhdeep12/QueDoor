@@ -1,0 +1,63 @@
+:root {
+  --white-color: aliceblue;
+  --font: "Calibri";
+}
+
+.topbar {
+  display: flex;
+  background-color: rgb(54, 53, 51);
+
+  color: var(--white-color);
+  align-items: center;
+  height: 60px;
+}
+
+.topbar .left__logo {
+  font-weight: 700;
+
+  margin-left: 5%;
+  flex-grow: 4;
+  font-size: x-large;
+  font-family: var(--font);
+}
+.left__logo__button {
+  color: var(--white-color);
+  text-decoration: none;
+}
+.topbar .middle {
+  flex-grow: 4;
+  /* background-color: red; */
+}
+.topbar .middle .filter__button {
+  color: var(--white-color);
+  font-size: 21px;
+  letter-spacing: 4px;
+  text-decoration: none;
+  padding: 6px 10px;
+  border: 1px solid var(--white-color);
+  float: right;
+  border-radius: 4px;
+  background: none;
+  /* background-color: rgb(54, 53, 51); */
+}
+.topbar .middle .filter__button:hover {
+  background: white;
+  color: rgb(54, 53, 51);
+
+  cursor: pointer;
+}
+
+.topbar .right__account {
+  flex-grow: 3;
+
+  direction: rtl;
+  padding-right: 5%;
+}
+
+.Account__button {
+  color: var(--white-color);
+}
+
+.theme__button {
+  margin-right: 2%;
+}

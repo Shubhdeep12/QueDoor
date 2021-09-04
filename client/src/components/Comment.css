@@ -1,0 +1,29 @@
+.delete__bar__comment {
+  background: #ffffff;
+  position: absolute;
+  box-shadow: 2px 2px 2px #cfcfcf;
+  cursor: pointer;
+  width: 70px;
+  height: 25px;
+  right: -10px;
+  padding: 3px 12px;
+  font-size: medium;
+  font-weight: 500;
+  align-content: center;
+  border-radius: 4px;
+  animation: animate__delete__bar 100ms ease-in-out forwards;
+}
+
+@keyframes animate__delete__bar {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+    visibility: visible;
+  }
+}
