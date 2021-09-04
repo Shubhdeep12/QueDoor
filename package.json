@@ -1,0 +1,50 @@
+{
+  "name": "quedoor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "engines": {
+    "node": ">=6.x.x",
+    "npm": ">=7.x.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run server",
+    "client": "cd client && npm start",
+    "server": "node server.js",
+    "dev": " concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.26.3",
+    "cors": "^2.8.5",
+    "datauri": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "gridfs-stream": "^1.1.1",
+    "helmet": "^4.6.0",
+    "imagemin": "^8.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.13",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^4.2.0",
+    "multer-storage-cloudinary": "^4.0.0",
+    "node-fetch": "^2.6.1",
+    "node-tesseract": "^0.2.7",
+    "node-tesseract-ocr": "^2.2.1",
+    "request": "^2.88.2",
+    "sharp": "^0.28.3",
+    "similarity": "^1.2.1",
+    "string-similarity": "^4.0.4",
+    "tesseract.js": "^2.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "proxy": "http://localhost:8080"
+}
