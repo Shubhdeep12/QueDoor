@@ -51,8 +51,12 @@ exports.deletePost = async (req, res) => {
     const user = await db.user.findById(mongoose.Types.ObjectId(req.params.id));
 
     if (post.name === user.name) {
-      const result = await v2cloudinary.uploader.destroy(post.image.public_id);
-      console.log(result);
+      try {
+        const result = await v2cloudinary.uploader.destroy(
+          post.image.public_id
+        );
+        console.log(result);
+      } catch (err) {}
       const userPost = await db.user.findByIdAndUpdate(
         mongoose.Types.ObjectId(req.params.id),
         { $pull: { posts: post._id } },
@@ -80,10 +84,12 @@ exports.deleteComment = async (req, res) => {
     const comment = await db.comments.findById(req.body.commentid);
     const user = await db.user.findById(comment.user);
     if (user._id.toString() === req.params.id) {
-      const result = await v2cloudinary.uploader.destroy(
-        comment.image.public_id
-      );
-      console.log(result);
+      try {
+        const result = await v2cloudinary.uploader.destroy(
+          comment.image.public_id
+        );
+        console.log(result);
+      } catch (err) {}
       await comment.deleteOne();
       const userPost = await db.posts.findByIdAndUpdate(
         mongoose.Types.ObjectId(comment.postId),

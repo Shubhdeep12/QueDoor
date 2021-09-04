@@ -33,8 +33,10 @@ exports.filter = async (req, res) => {
     await worker.terminate();
   } catch (err) {}
 
-  const result = await v2cloudinary.uploader.destroy(req.body.img.public_id);
-  console.log(result);
+  try {
+    const result = await v2cloudinary.uploader.destroy(req.body.img.public_id);
+    console.log(result);
+  } catch (err) {}
   let count = 1;
   if (postext.length > 2 && imagetext.length > 2) {
     count = 2;

@@ -181,10 +181,12 @@ exports.deleteComment = async (req, res) => {
     const comment = await db.comments.findById(req.body.commentid);
     const user = await db.user.findById(comment.user);
     if (user._id.toString() === req.params.id) {
-      const result = await v2cloudinary.uploader.destroy(
-        comment.image.public_id
-      );
-      console.log(result);
+      try {
+        const result = await v2cloudinary.uploader.destroy(
+          comment.image.public_id
+        );
+        console.log(result);
+      } catch (err) {}
       await comment.deleteOne();
       const userPost = await db.posts.findByIdAndUpdate(
         mongoose.Types.ObjectId(comment.postId),
