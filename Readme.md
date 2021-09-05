@@ -54,3 +54,20 @@ Also if they don't want to upload a question they can also search for related qu
 
 </em>
 </p>
+
+<br>
+<br>
+
+### Tools & Frameworks Used.
+
+- <b>Firebase</b> is used to host the <b>Frontend</b> of the Application.
+- <b>Heroku</b> is used to host <b>Backend</b> of the Application.
+- <b>VS Code</b> is used to develop the Application.
+- <b>React</b> and <b>Redux</b> is used to develop the Frontend of the Application.
+- <b>Node.js</b> and <b>Express.js</b> is used to develop the backend/server of the Application.
+- <b>MongoDB</b> is used to store the data of Application.
+- <b>Cloudinary</b> is used to store the image files.
+
+### Link to App
+
+- <a href="https://quedoor-1.web.app/Home">Click Here</a>
