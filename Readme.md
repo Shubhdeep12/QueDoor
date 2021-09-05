@@ -5,7 +5,7 @@
 <p>
 <em>
 
-QueDoor as the name suggests this is the entrance for tending to your request. It's a kind of online media stage where you can help out others.
+QueDoor as the name suggests this is the <b>Door</b> to solve your <b>Questions</b>. It's a kind of social media platform where you can help out others.
 </em>
 
 </p>
@@ -14,7 +14,8 @@ QueDoor as the name suggests this is the entrance for tending to your request. I
 
 <p>
 <em>
-This stage will help an understudy with posing inquiries from various understudies and besides can you remarkable part of finding related posts.
+This platform will help an understudy to resolve their doubt by asking them from other people.
+Also if they don't want to upload a question they can also search for related questions.
 
 </em>
 </p>
@@ -24,19 +25,17 @@ This stage will help an understudy with posing inquiries from various understudi
 <p>
 <em>
 
-- On this stage, you can sign in/up through Google or Facebook or by entering nuances actually.
+- On this platform, you can sign in/up through Google or Facebook or by entering details manually.
 
-- After login, there is a presentation page where all of the new posts are shown.
+- After login, there is a Home page where all of the posts are shown.
 
-- On the greeting page, we can make a post in like manner with the component of adding pictures also.
+- On the Home page, we can create a post.
 
-- We can incorporate a comment a post also.
+- We can incorporate a comment on a post also.
 
-- There is a presentation page where customers can see the post posted by them and can eradicate the post also.
+- There is a Account page where user can see the post posted by them and can eradicate the post also.
 
-- There is an unprecedented component that comes in the wake of tapping the channel button.
-
-- Here on the channel page, you can enter nuances, for instance, message or message +image and after the post, you will get all of the presents related/same on that post on the off chance that there are at this point or the post which is somewhat same according to popular demand.
+- Here on the Filter page, the user can enter details, for instance, message or message + image and after clicking the post, the user will get all of the posts having similarity with that post in the order.
 
 - We can change the subject of the application moreover by a catch on the top bar.
 
