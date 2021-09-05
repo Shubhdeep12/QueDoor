@@ -29,7 +29,7 @@ function Login() {
   const [errorDisplay, setErrorDisplay] = useState({
     message: "",
     state: false,
-    color: "",
+    type: "",
   });
 
   useEffect(() => {
@@ -113,6 +113,7 @@ function Login() {
       setErrorDisplay({
         state: true,
         message: "Incorrect Details",
+        type: "err",
       });
     }
   };
@@ -181,14 +182,14 @@ function Login() {
       setErrorDisplay({
         state: true,
         message: "User Created Successfully",
-        color: "#90f084",
+        type: "succ",
       });
     } catch (err) {
       console.log(err.response);
       setErrorDisplay({
         state: true,
         message: "Incorrect Details",
-        color: "#f75c5c",
+        type: "err",
       });
     }
   };
@@ -196,7 +197,7 @@ function Login() {
   useEffect(() => {
     if (errorDisplay.state) {
       setTimeout(() => {
-        setErrorDisplay(false);
+        setErrorDisplay({ state: false, message: "", type: "" });
       }, 3000);
     }
   }, [errorDisplay.state]);
@@ -210,10 +211,7 @@ function Login() {
   return (
     <div className="Login">
       {errorDisplay.state && (
-        <div
-          className="error_message"
-          style={{ backgroundColor: errorDisplay.color }}
-        >
+        <div className={"error_message_" + errorDisplay.type}>
           {errorDisplay.message}
         </div>
       )}

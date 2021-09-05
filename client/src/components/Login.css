@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
 }
-.error_message {
+.error_message_err {
   position: absolute;
   overflow: hidden;
   width: 250px;
@@ -23,7 +23,36 @@
   color: #eee;
   animation: error 0.4s ease-in-out;
 }
-
+.error_message_succ {
+  position: absolute;
+  overflow: hidden;
+  width: 250px;
+  max-width: 100%;
+  min-height: 20px;
+  display: flex;
+  z-index: 20;
+  left: 50%;
+  transform: translateX(-50%) translateY(-300%);
+  background-color: #90f084;
+  margin-top: 50px;
+  border-radius: 9px;
+  padding: 25px 25px;
+  font-size: large;
+  font-weight: bold;
+  color: #eee;
+  animation: succ 0.4s ease-in-out;
+}
+@keyframes succ {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -340%);
+  }
+  50%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -300%);
+  }
+}
 @keyframes error {
   0% {
     opacity: 0;
