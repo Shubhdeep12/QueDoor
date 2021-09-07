@@ -35,7 +35,7 @@ exports.getAllPosts = async (req, res) => {
       user: await db.user.findById(mongoose.Types.ObjectId(req.params.id)),
     };
 
-    res.status.json(obj);
+    res.status(200).json(obj);
   } catch (err) {
     res.status(500).json("Error: " + err);
   }

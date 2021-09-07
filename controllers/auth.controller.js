@@ -38,7 +38,9 @@ exports.signup = (req, res) => {
               return;
             }
 
-            res.send({ message: "User was registered successfully!" });
+            res
+              .status(200)
+              .json({ message: "User was registered successfully!" });
           });
         }
       );
@@ -110,6 +112,6 @@ exports.signin = (req, res) => {
         roles: authorities,
         accessToken: token,
       };
-      res.send({ values: values, message: "signin successfull" });
+      res.status(200).json({ values: values, message: "signin successfull" });
     });
 };
