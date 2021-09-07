@@ -5,7 +5,7 @@
 
 .topbar {
   display: flex;
-  background-color: rgb(54, 53, 51);
+  background-color: #2b2929;
 
   color: var(--white-color);
   align-items: center;
@@ -38,12 +38,11 @@
   float: right;
   border-radius: 4px;
   background: none;
-  /* background-color: rgb(54, 53, 51); */
+  /* background-color: #2b2929; */
 }
 .topbar .middle .filter__button:hover {
   background: white;
-  color: rgb(54, 53, 51);
-
+  color: #2b2929;
   cursor: pointer;
 }
 
