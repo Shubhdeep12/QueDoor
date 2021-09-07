@@ -35,7 +35,7 @@ exports.getAllPosts = async (req, res) => {
       user: await db.user.findById(mongoose.Types.ObjectId(req.params.id)),
     };
 
-    res.send(obj);
+    res.status.json(obj);
   } catch (err) {
     res.status(500).json("Error: " + err);
   }
@@ -97,7 +97,7 @@ exports.deleteComment = async (req, res) => {
         { safe: true, upsert: true }
       );
 
-      res.send("the comment has been deleted");
+      res.status.json("the comment has been deleted");
     } else {
       res.status(403).json("you can delete only your comment");
     }

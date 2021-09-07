@@ -88,7 +88,7 @@ exports.filter = async (req, res) => {
         posts: finalPosts,
         user: await db.user.findById(mongoose.Types.ObjectId(req.params.id)),
       };
-      res.send(obj);
+      res.status(200).json(obj);
     } catch (err) {
       res.status(500).json("Error: " + err);
     }
