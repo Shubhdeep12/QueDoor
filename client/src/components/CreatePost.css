@@ -42,7 +42,7 @@
   font-size: small;
   border: 1px solid;
   border-radius: 20px;
-  font-weight: bold;
+
   margin: 5px 5px;
   top: -7px;
   position: relative;
@@ -73,7 +73,8 @@
   top: -7px;
   border: 1px solid;
   color: rgb(58, 58, 58);
-  border-radius: 9px;
+  border-radius: 20px;
+  font-weight: bold;
   cursor: pointer;
 }
 

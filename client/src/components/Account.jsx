@@ -19,7 +19,7 @@ function Account() {
         setPostsData(p.data);
         //console.log(postsData);
       } catch (err) {
-        console.log(err.response);
+        console.log(err);
       }
     };
     a();

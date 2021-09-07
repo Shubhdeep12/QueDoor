@@ -19,9 +19,12 @@ const userSchema = mongoose.Schema(
     posts: {
       type: Array,
     },
-    comments: {
-      type: Array,
-    },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
     password: {
       type: String,
       required: true,

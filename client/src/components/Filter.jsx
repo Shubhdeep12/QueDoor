@@ -39,14 +39,14 @@ function Filter() {
             name: responseAfterFilterUpload.data.name,
             public_id: responseAfterFilterUpload.data.public_id,
           };
-          console.log(responseAfterFilterUpload.data.public_id);
+
           const responseAfterFilterPost = await axios.post(
             "/Filter",
             createFilterPostData
           );
           setFilterPosts(responseAfterFilterPost.data);
         } catch (err) {
-          console.log(err.response);
+          console.log(err);
         }
       } else {
         try {
@@ -57,7 +57,7 @@ function Filter() {
           // console.log(responseAfterFilterPost);
           setFilterPosts(responseAfterFilterPost.data);
         } catch (err) {
-          console.log(err.response);
+          console.log(err);
         }
       }
     } catch (err) {

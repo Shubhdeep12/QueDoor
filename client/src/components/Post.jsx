@@ -123,7 +123,7 @@ function Post({
           change(!refreshValue);
           //window.location.reload();
         } catch (err) {
-          console.log(err.response);
+          console.log(err);
         }
       }
     } catch (err) {
@@ -152,7 +152,7 @@ function Post({
       //console.log(responseAfterDeletePost);
       change(!refreshValue);
     } catch (err) {
-      console.log(err.response);
+      console.log(err);
     }
   };
   return (

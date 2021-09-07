@@ -24,7 +24,7 @@ function Comment({ on, m, userId, on_change, refreshValue }) {
       // console.log(responseAfterCommentDelete);
       on_change(!refreshValue);
     } catch (err) {
-      console.log(err.response);
+      console.log(err);
     }
   };
 

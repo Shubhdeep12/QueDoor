@@ -158,25 +158,14 @@ exports.addComment = async (req, res) => {
       await db.posts.findByIdAndUpdate(
         mongoose.Types.ObjectId(postid),
         { $push: { comments: newComment._id } },
-        { safe: true, upsert: true },
-        function (err, doc) {
-          if (err) {
-            throw Error(err);
-          }
-        }
+        { safe: true, upsert: true }
       );
       await db.user.findByIdAndUpdate(
         mongoose.Types.ObjectId(req.params.id),
         { $push: { comments: newComment._id } },
-        { safe: true, upsert: true },
-        function (err, doc) {
-          if (err) {
-            throw Error(err);
-          } else {
-            return res.status(200).send("comment added");
-          }
-        }
+        { safe: true, upsert: true }
       );
+      return res.status(200).send("comment added");
     } catch (err) {
       //console.log(err);
       return res.status(500).send("Error:" + err);
