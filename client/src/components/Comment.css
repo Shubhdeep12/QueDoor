@@ -10,7 +10,7 @@
   font-size: medium;
   font-weight: 500;
   align-content: center;
-  border-radius: 4px;
+  border-radius: 20px;
   animation: animate__delete__bar 100ms ease-in-out forwards;
 }
 

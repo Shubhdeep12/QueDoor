@@ -17,7 +17,7 @@ function Home() {
       setPostsData(p.data);
       // console.log(p.data);
     } catch (err) {
-      console.log(err.response);
+      console.log(err);
     }
   }, [refresh]);
 
@@ -56,7 +56,7 @@ function Home() {
 
           setRefresh(!refresh);
         } catch (err) {
-          console.log(err.response);
+          console.log(err);
         }
       } else {
         try {
@@ -67,7 +67,7 @@ function Home() {
 
           setRefresh(!refresh);
         } catch (err) {
-          console.log(err.response);
+          console.log(err);
         }
       }
     } catch (err) {}

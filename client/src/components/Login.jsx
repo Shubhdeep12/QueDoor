@@ -179,13 +179,15 @@ function Login() {
     try {
       const signUpResponse = await axios.post("/Login/signup", Data);
       //console.log(signUpResponse);
-      setErrorDisplay({
-        state: true,
-        message: "User Created Successfully",
-        type: "succ",
-      });
+
+      // setErrorDisplay({
+      //   state: true,
+      //   message: "User Created Successfully",
+      //   type: "succ",
+      // });
+      await handleSignin({ email: Data.email, password: Data.password });
     } catch (err) {
-      console.log(err.response);
+      console.log(err);
       setErrorDisplay({
         state: true,
         message: "Incorrect Details",
