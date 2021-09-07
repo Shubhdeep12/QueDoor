@@ -40,7 +40,7 @@ exports.signup = (req, res) => {
 
             res
               .status(200)
-              .json({ message: "User was registered successfully!" });
+              .send({ message: "User was registered successfully!" });
           });
         }
       );
@@ -112,6 +112,6 @@ exports.signin = (req, res) => {
         roles: authorities,
         accessToken: token,
       };
-      res.status(200).json({ values: values, message: "signin successfull" });
+      res.status(200).send({ values: values, message: "signin successfull" });
     });
 };

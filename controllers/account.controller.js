@@ -35,9 +35,9 @@ exports.getAllPosts = async (req, res) => {
       user: await db.user.findById(mongoose.Types.ObjectId(req.params.id)),
     };
 
-    res.status(200).json(obj);
+    res.status(200).send(obj);
   } catch (err) {
-    res.status(500).json("Error: " + err);
+    res.status(500).send("Error: " + err);
   }
 };
 
@@ -69,12 +69,12 @@ exports.deletePost = async (req, res) => {
 
       await post.deleteOne();
 
-      res.status(200).json("the post has been deleted");
+      res.status(200).send("the post has been deleted");
     } else {
-      res.status(403).json("you can delete only your post");
+      res.status(403).send("you can delete only your post");
     }
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).send(err);
   }
 };
 
@@ -97,11 +97,11 @@ exports.deleteComment = async (req, res) => {
         { safe: true, upsert: true }
       );
 
-      res.status(200).json("the comment has been deleted");
+      res.status(200).send("the comment has been deleted");
     } else {
-      res.status(403).json("you can delete only your comment");
+      res.status(403).send("you can delete only your comment");
     }
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).send(err);
   }
 };

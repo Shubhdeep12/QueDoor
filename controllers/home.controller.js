@@ -33,9 +33,9 @@ exports.getAllPosts = async (req, res) => {
       user: await db.user.findById(mongoose.Types.ObjectId(req.params.id)),
     };
 
-    res.status(200).json(obj);
+    res.status(200).send(obj);
   } catch (err) {
-    res.status(500).json("Error: " + err);
+    res.status(500).send("Error: " + err);
   }
 };
 
@@ -91,14 +91,14 @@ exports.addPost = async (req, res) => {
         { safe: true, upsert: true },
         function (err, doc) {
           if (err) {
-            return res.status(500).json("Error:" + err);
+            return res.status(500).send("Error:" + err);
           } else {
-            res.status(200)("Post added");
+            res.status(200).send("Post added");
           }
         }
       );
     } catch (err) {
-      return res.status(500).json("Error:" + err);
+      return res.status(500).send("Error:" + err);
     }
   })();
 };
@@ -161,7 +161,7 @@ exports.addComment = async (req, res) => {
         { safe: true, upsert: true },
         function (err, doc) {
           if (err) {
-            return res.status(500).json("Error:" + err);
+            return res.status(500).send("Error:" + err);
           } else {
             //console.log("DONE");
             res.status(200)("comment added");
@@ -170,7 +170,7 @@ exports.addComment = async (req, res) => {
       );
     } catch (err) {
       //console.log(err);
-      return res.status(500).json("Error:" + err);
+      return res.status(500).send("Error:" + err);
     }
   })();
 };
@@ -196,9 +196,9 @@ exports.deleteComment = async (req, res) => {
 
       res.status(200)("the comment has been deleted");
     } else {
-      res.status(403).json("you can delete only your comment");
+      res.status(403).send("you can delete only your comment");
     }
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).send(err);
   }
 };
