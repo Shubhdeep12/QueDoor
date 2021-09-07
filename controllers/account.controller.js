@@ -97,7 +97,7 @@ exports.deleteComment = async (req, res) => {
         { safe: true, upsert: true }
       );
 
-      res.status.json("the comment has been deleted");
+      res.status(200).json("the comment has been deleted");
     } else {
       res.status(403).json("you can delete only your comment");
     }
