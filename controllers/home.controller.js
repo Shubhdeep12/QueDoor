@@ -155,16 +155,25 @@ exports.addComment = async (req, res) => {
     });
     try {
       const result = await newComment.save();
-      db.posts.findByIdAndUpdate(
+      await db.posts.findByIdAndUpdate(
         mongoose.Types.ObjectId(postid),
         { $push: { comments: newComment._id } },
         { safe: true, upsert: true },
         function (err, doc) {
           if (err) {
-            return res.status(500).send("Error:" + err);
+            throw Error(err);
+          }
+        }
+      );
+      await db.user.findByIdAndUpdate(
+        mongoose.Types.ObjectId(req.params.id),
+        { $push: { comments: newComment._id } },
+        { safe: true, upsert: true },
+        function (err, doc) {
+          if (err) {
+            throw Error(err);
           } else {
-            //console.log("DONE");
-            res.status(200)("comment added");
+            return res.status(200).send("comment added");
           }
         }
       );
@@ -193,8 +202,13 @@ exports.deleteComment = async (req, res) => {
         { $pull: { comments: comment._id } },
         { safe: true, upsert: true }
       );
+      await db.user.findByIdAndUpdate(
+        mongoose.Types.ObjectId(comment.commentid),
+        { $pull: { comments: comment._id } },
+        { safe: true, upsert: true }
+      );
 
-      res.status(200)("the comment has been deleted");
+      res.status(200).send("the comment has been deleted");
     } else {
       res.status(403).send("you can delete only your comment");
     }

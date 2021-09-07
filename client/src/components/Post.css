@@ -140,11 +140,12 @@
   height: 30px;
   width: 55px;
   position: relative;
-  letter-spacing: 1px;
   background: none;
   border: 1px solid;
   color: rgb(58, 58, 58);
-  border-radius: 9px;
+  border-radius: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
   cursor: pointer;
 }
 

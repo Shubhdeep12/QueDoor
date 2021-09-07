@@ -96,6 +96,11 @@ exports.deleteComment = async (req, res) => {
         { $pull: { comments: comment._id } },
         { safe: true, upsert: true }
       );
+      await db.user.findByIdAndUpdate(
+        mongoose.Types.ObjectId(comment.commentid),
+        { $pull: { comments: comment._id } },
+        { safe: true, upsert: true }
+      );
 
       res.status(200).send("the comment has been deleted");
     } else {
