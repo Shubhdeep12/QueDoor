@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import "./Comment.css";
 import axios from "../axios";
-const serverPath = "http://localhost:4000/images/";
+
 function Comment({ on, m, userId, on_change, refreshValue }) {
   const [showDeleteBar, setShowDeleteBar] = useState(false);
 
