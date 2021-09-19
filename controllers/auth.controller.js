@@ -43,7 +43,7 @@ exports.signup = (req, res) => {
             });
             res
               .status(200)
-              .cookie("token", token, { httpOnly: true })
+              .cookie("token", token, { httpOnly: true, SameSite: None })
               .send({
                 values: _.pick(user, ["id", "name"]),
                 message: "signup successfull",
@@ -70,7 +70,7 @@ exports.signup = (req, res) => {
           //console.log(_.pick(user, ["id", "name"]));
           res
             .status(200)
-            .cookie("token", token, { httpOnly: true })
+            .cookie("token", token, { httpOnly: true, SameSite: None })
             .send({
               values: _.pick(user, ["id", "name"]),
               message: "signup successfull",
@@ -125,7 +125,7 @@ exports.signin = (req, res) => {
       };
       res
         .status(200)
-        .cookie("token", token, { httpOnly: true })
+        .cookie("token", token, { httpOnly: true, SameSite: None })
         .send({
           values: _.pick(values, ["id", "name"]),
           message: "signin successfull",
