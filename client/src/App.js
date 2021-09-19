@@ -2,7 +2,8 @@ import "./App.css";
 import React from "react";
 import { Login, Home, Account, Filter, ErrorPage } from "./components";
 import { useSelector, useDispatch } from "react-redux";
-import { signIn } from "./actions";
+import { signIn, signout } from "./actions";
+import axios from "./axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {

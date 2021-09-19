@@ -14,16 +14,21 @@ const app = express();
 const { multerUploads } = require("./middlewares/multer");
 const { uploader, cloudinaryConfig } = require("./config/cloudinary.config");
 const path = require("path");
+const { logout, authJwt } = require("./middlewares");
+const cookieParser = require("cookie-parser");
 
 //middleware
-app.use(cors());
+//app.use(cors({ credentials: true, origin: process.env.FRONT_END_URL }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cookieParser());
+
 app.use("*", cloudinaryConfig);
 app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/images", express.static(path.join(__dirname, "/images")));
+//app.use("/images", express.static(path.join(__dirname, "/images")));
 //Setting up port
 const port = process.env.PORT || 4000;
 
@@ -119,6 +124,16 @@ app.route("/upload").post(multerUploads, (req, res) => {
   }
 });
 
+app.route("/logout").get((req, res) => {
+  //console.log("logging out");
+  logout.logoutUser(req, res);
+});
+
+app.route("/status").get([authJwt.verifyToken], (req, res) => {
+  // console.log("checking");
+
+  res.status(200).send({ message: "token verified" });
+});
 app.listen(port, () => {
   console.log(`server is running on port: ${port}`);
 });

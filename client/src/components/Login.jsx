@@ -61,9 +61,10 @@ function Login() {
       const userSignInData = {
         password: res.googleId.substring(0, 5) + res.givenName,
         email: res.email,
-        token: response.tokenObj.access_token,
       };
-
+      // const config = {
+      //   headers: { "x-access-token": response.tokenObj.access_token },
+      // };
       await handleSignin(userSignInData);
     } catch (err) {
       console.log(err);
@@ -78,10 +79,11 @@ function Login() {
       const userSignInData = {
         password: response.name,
         email: response.name,
-        token: response.accessToken,
       };
       //console.log(userSignInData);
-
+      // const config = {
+      //   headers: { "x-access-token": response.accessToken },
+      // };
       await handleSignin(userSignInData);
     } catch (err) {
       console.log(err);
@@ -104,12 +106,12 @@ function Login() {
   const handleSignin = async (userData) => {
     try {
       const signInResponse = await axios.post("/Login/signin", userData);
-      //console.log(signInResponse.data.values.id);
+      console.log(signInResponse);
       dispatch(signIn(signInResponse.data.values.id));
       localStorage.setItem("userId", signInResponse.data.values.id);
       history.push("/Home");
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
       setErrorDisplay({
         state: true,
         message: "Incorrect Details",
@@ -120,6 +122,7 @@ function Login() {
 
   const responseGoogle_signup = async (response) => {
     var res = response.profileObj;
+
     try {
       if (!res.givenName || !res.googleId || !res.email) {
         throw Error();
@@ -134,7 +137,9 @@ function Login() {
         email: res.email,
       };
       // console.log(userSignUpData);
-
+      // const config = {
+      //   headers: { "x-access-token": response.tokenObj.access_token },
+      // };
       await handleSignup(userSignUpData);
     } catch (err) {
       console.log(err);
@@ -145,6 +150,7 @@ function Login() {
       if (!response || !response.name) {
         throw Error();
       }
+      console.log(response);
       const userSignUpData = {
         name: response.name,
         password: response.name,
@@ -178,16 +184,12 @@ function Login() {
   const handleSignup = async (Data) => {
     try {
       const signUpResponse = await axios.post("/Login/signup", Data);
-      //console.log(signUpResponse);
-
-      // setErrorDisplay({
-      //   state: true,
-      //   message: "User Created Successfully",
-      //   type: "succ",
-      // });
-      await handleSignin({ email: Data.email, password: Data.password });
+      console.log(signUpResponse);
+      dispatch(signIn(signUpResponse.data.values.id));
+      localStorage.setItem("userId", signUpResponse.data.values.id);
+      history.push("/Home");
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
       setErrorDisplay({
         state: true,
         message: "Incorrect Details",

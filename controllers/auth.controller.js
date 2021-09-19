@@ -4,6 +4,7 @@ const User = db.user;
 const Role = db.role;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+var _ = require("underscore");
 
 exports.signup = (req, res) => {
   const user = new User({
@@ -37,10 +38,16 @@ exports.signup = (req, res) => {
               res.status(500).send({ message: err });
               return;
             }
-
+            var token = jwt.sign({ id: user.id }, process.env.secret, {
+              expiresIn: 86400, // 24 hours
+            });
             res
               .status(200)
-              .send({ message: "User was registered successfully!" });
+              .cookie("token", token, { httpOnly: true })
+              .send({
+                values: _.pick(user, ["id", "name"]),
+                message: "signup successfull",
+              });
           });
         }
       );
@@ -57,10 +64,17 @@ exports.signup = (req, res) => {
             res.status(500).send({ message: err });
             return;
           }
-
+          var token = jwt.sign({ id: user.id }, config.secret, {
+            expiresIn: 86400, // 24 hours
+          });
+          //console.log(_.pick(user, ["id", "name"]));
           res
             .status(200)
-            .send({ message: "User was registered successfully!" });
+            .cookie("token", token, { httpOnly: true })
+            .send({
+              values: _.pick(user, ["id", "name"]),
+              message: "signup successfull",
+            });
         });
       });
     }
@@ -94,11 +108,9 @@ exports.signin = (req, res) => {
         });
       }
 
-      var token =
-        req.body.token ||
-        jwt.sign({ id: user.id }, config.secret, {
-          expiresIn: 86400, // 24 hours
-        });
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400, // 24 hours
+      });
 
       var authorities = [];
 
@@ -110,8 +122,13 @@ exports.signin = (req, res) => {
         name: user.name,
         email: user.email,
         roles: authorities,
-        accessToken: token,
       };
-      res.status(200).send({ values: values, message: "signin successfull" });
+      res
+        .status(200)
+        .cookie("token", token, { httpOnly: true })
+        .send({
+          values: _.pick(values, ["id", "name"]),
+          message: "signin successfull",
+        });
     });
 };

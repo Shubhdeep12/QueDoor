@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Topbar, CreatePost, Post } from "../components";
+import { useSelector, useDispatch } from "react-redux";
+
+import { signout } from "../actions";
 import "./Filter.css";
 import axios from "../axios";
 function Filter() {
+  const userId = useSelector((state) => state.authDetails.userId);
+  const dispatch = useDispatch();
   const [filterPosts, setFilterPosts] = useState({
     posts: null,
   });
   const [refresh, setRefresh] = useState(false);
 
-  useEffect(() => {
+  useEffect(async () => {
     //console.log("1" + filterPosts);
-    setFilterPosts(filterPosts);
+    try {
+      const status = await axios.get("/status", { userId });
+      setFilterPosts(filterPosts);
+    } catch (err) {
+      console.log(err.response);
+      await axios.get("/logout");
+      dispatch(signout());
+      localStorage.setItem("userId", "");
+      setRefresh(!refresh);
+    }
   }, [refresh]);
   const handleCreatePostValue = async (value) => {
     // console.log(value);

@@ -1,29 +1,21 @@
-.Account {
-  width: 100%;
-}
-.Posts {
+.Account > .Posts {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 }
-.create {
-  flex: 1.1;
-}
-.posts {
-  flex: 2;
-}
-.posts__on__Account {
+
+.Account > .Posts > .posts {
   transition: transform 0.5s cubic-bezier(0.44, 0.03, 0.26, 1.7);
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   flex: 0.6;
 }
-.rightbar {
+.Account > .Posts > .rightbar {
   flex: 0.5;
 }
 
-.signout {
+.Account > .Posts > .rightbar > .signout {
   margin-left: 70%;
   margin-top: 10px;
   width: 70px;
@@ -35,7 +27,7 @@
   color: rgb(58, 58, 58);
   cursor: pointer;
 }
-.signout:hover {
+.Account > .Posts > .rightbar > .signout:hover {
   color: aliceblue;
   background-color: rgb(58, 58, 58);
   border: 1px solid rgb(58, 58, 58);

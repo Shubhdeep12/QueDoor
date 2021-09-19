@@ -187,22 +187,20 @@ function Post({
           )}
           <div className="main__content">
             <div className="text">
-              <div>
-                {text.length < 150 ? text : text.substring(0, 150)}
+              {text.length < 150 ? text : text.substring(0, 150)}
 
-                {moreText ? "" : text.substring(150)}
-                {text.length > 150 && (
-                  <div
-                    role="button"
-                    className="show__button"
-                    onClick={() => {
-                      setmoreText(!moreText);
-                    }}
-                  >
-                    {read_more_less}
-                  </div>
-                )}
-              </div>
+              {moreText ? "" : text.substring(150)}
+              {text.length > 150 && (
+                <div
+                  role="button"
+                  className="show__button"
+                  onClick={() => {
+                    setmoreText(!moreText);
+                  }}
+                >
+                  {read_more_less}
+                </div>
+              )}
             </div>
             <div className="image">
               {image && <img src={image} alt={"Unable to load"} />}

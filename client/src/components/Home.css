@@ -1,0 +1,13 @@
+.Home > .Posts {
+  display: flex;
+  flex-wrap: wrap;
+}
+.Home > .Posts > .create {
+  flex: 1;
+}
+.Home > .Posts > .posts {
+  flex: 2;
+}
+.Home > .Posts > .rightbar {
+  flex: 0.2;
+}

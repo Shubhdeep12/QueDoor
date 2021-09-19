@@ -5,20 +5,19 @@ const User = db.user;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
-
+  // console.log(req.cookies);
+  var token = req.cookies.token;
   if (!token) {
-    return res.status(403).send({ message: "No token provided!" });
+    return res.status(401).send({ message: "No token provided!" });
   }
-
-  req.body.token ||
-    jwt.verify(token, config.secret, (err, decoded) => {
-      if (err) {
-        return res.status(401).send({ message: "Unauthorized!" });
-      }
-      req.userId = decoded.id;
-      next();
-    });
+  try {
+    const decodedData = jwt.verify(token, process.env.secret);
+    req.body.userId = decodedData.id;
+    next();
+  } catch (err) {
+    res.clearCookie("token");
+    return res.status(400).send({ message: "Unauthorized!" });
+  }
 };
 
 isAdmin = (req, res, next) => {

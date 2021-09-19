@@ -1,23 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Topbar, CreatePost, Post, Loading } from "../components";
-
-import "./Content.css";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import "./Home.css";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "../axios";
 
+import { signout } from "../actions";
+
 function Home() {
-  const userID = useSelector((state) => state.authDetails.userId);
+  const history = useHistory();
+  const userId = useSelector((state) => state.authDetails.userId);
   const [postsData, setPostsData] = useState(null);
   const [refresh, setRefresh] = useState(false);
-
+  const dispatch = useDispatch();
   useEffect(async () => {
     try {
-      const p = await axios.get("/Home/" + userID);
+      const status = await axios.get("/status", { userId });
+
+      const p = await axios.get("/Home/" + userId);
       //console.log("refreshed");
       setPostsData(p.data);
       // console.log(p.data);
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
+      await axios.get("/logout");
+      dispatch(signout());
+      localStorage.setItem("userId", "");
+      setRefresh(!refresh);
     }
   }, [refresh]);
 
@@ -50,7 +59,7 @@ function Home() {
           };
           //   console.log(responseAfterUpload);
           const responseAfterPost = await axios.post(
-            "/Home/" + userID + "/post",
+            "/Home/" + userId + "/post",
             createPostData
           );
 
@@ -61,7 +70,7 @@ function Home() {
       } else {
         try {
           let responseAfterPost = await axios.post(
-            "/Home/" + userID + "/post",
+            "/Home/" + userId + "/post",
             createPostData
           );
 

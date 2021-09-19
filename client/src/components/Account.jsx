@@ -2,24 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Topbar, Post, Loading } from "../components";
 import axios from "../axios";
 import "./Account.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signout } from "../actions";
 
-import { useSelector } from "react-redux";
 function Account() {
   const dispatch = useDispatch();
-  const userID = useSelector((state) => state.authDetails.userId);
+  const userId = useSelector((state) => state.authDetails.userId);
   const [postsData, setPostsData] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     let a = async () => {
       try {
-        const p = await axios.get("/Account/" + userID);
+        const status = await axios.get("/status", { userId });
+        const p = await axios.get("/Account/" + userId);
         setPostsData(p.data);
         //console.log(postsData);
       } catch (err) {
-        console.log(err);
+        console.log(err.response);
+        await axios.get("/logout");
+        dispatch(signout());
+        localStorage.setItem("userId", "");
+        setRefresh(!refresh);
       }
     };
     a();
@@ -31,7 +35,7 @@ function Account() {
       <Topbar togo={"Home"} />
 
       <div className="Posts">
-        <div className="posts__on__Account">
+        <div className="posts">
           <div className="each__post">
             {postsData.posts.map((m) => {
               return (
@@ -55,6 +59,7 @@ function Account() {
             className="signout"
             onClick={(e) => {
               e.preventDefault();
+              axios.get("/logout");
               dispatch(signout());
               localStorage.setItem("userId", "");
             }}
