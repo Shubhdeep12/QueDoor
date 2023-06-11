@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
-import { GoogleLogin } from "react-google-login";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import axios from "../axios";
 import "./Login.css";
 
@@ -47,48 +43,7 @@ function Login() {
     setContainerActive("signInUp");
   };
 
-  const responseGoogle_signin = async (response) => {
-    var res = response.profileObj;
-    try {
-      if (
-        !res.googleId ||
-        !res.givenName ||
-        !res.email ||
-        !response.tokenObj.access_token
-      ) {
-        throw Error();
-      }
-      const userSignInData = {
-        password: res.googleId.substring(0, 5) + res.givenName,
-        email: res.email,
-      };
-      // const config = {
-      //   headers: { "x-access-token": response.tokenObj.access_token },
-      // };
-      await handleSignin(userSignInData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const responseFacebook_signin = async (response) => {
-    //console.log(response);
-    try {
-      if (!response.name || !response.accessToken) {
-        throw Error();
-      }
-      const userSignInData = {
-        password: response.name,
-        email: response.name,
-      };
-      //console.log(userSignInData);
-      // const config = {
-      //   headers: { "x-access-token": response.accessToken },
-      // };
-      await handleSignin(userSignInData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+ 
 
   const responseTable_signin = async (e) => {
     e.preventDefault();
@@ -120,49 +75,7 @@ function Login() {
     }
   };
 
-  const responseGoogle_signup = async (response) => {
-    var res = response.profileObj;
-
-    try {
-      if (!res.givenName || !res.googleId || !res.email) {
-        throw Error();
-      }
-
-      const userSignUpData = {
-        name:
-          res.givenName +
-          " " +
-          (res.familyName === undefined ? "" : res.familyName),
-        password: res.googleId.substring(0, 5) + res.givenName,
-        email: res.email,
-      };
-      // console.log(userSignUpData);
-      // const config = {
-      //   headers: { "x-access-token": response.tokenObj.access_token },
-      // };
-      await handleSignup(userSignUpData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const responseFacebook_signup = async (response) => {
-    try {
-      if (!response || !response.name) {
-        throw Error();
-      }
-      console.log(response);
-      const userSignUpData = {
-        name: response.name,
-        password: response.name,
-        email: response.name,
-      };
-      // console.log(userSignUpData);
-
-      await handleSignup(userSignUpData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  
 
   const responseTable_signup = async (e) => {
     e.preventDefault();
@@ -224,36 +137,7 @@ function Login() {
         <div className="form__container sign__up">
           <form className="form" action="/" onSubmit={responseTable_signup}>
             <h1 className="heading1">Create Account</h1>
-            <div className="social">
-              <span className="anchor">
-                <FacebookLogin
-                  appId={process.env.REACT_APP_facebook_id}
-                  autoLoad={false}
-                  buttonText=""
-                  callback={responseFacebook_signup}
-                  render={(renderProps) => (
-                    <FaFacebook
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                    />
-                  )}
-                />
-              </span>
-              <span className="anchor">
-                <GoogleLogin
-                  clientId={process.env.REACT_APP_CLIENT_ID}
-                  buttonText=""
-                  render={(renderProps) => (
-                    <FcGoogle
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                    />
-                  )}
-                  onSuccess={responseGoogle_signup}
-                  onFailure={responseGoogle_signup}
-                ></GoogleLogin>
-              </span>
-            </div>
+            
             <span className="span">or use your email for registration</span>
             <input
               className="input"
@@ -285,36 +169,7 @@ function Login() {
         <div className="form__container sign__in">
           <form className="form" action="/" onSubmit={responseTable_signin}>
             <h1 className="heading1">Sign in</h1>
-            <div className="social">
-              <span className="anchor">
-                <FacebookLogin
-                  appId={process.env.REACT_APP_facebook_id}
-                  autoLoad={false}
-                  buttonText=""
-                  callback={responseFacebook_signin}
-                  render={(renderProps) => (
-                    <FaFacebook
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                    />
-                  )}
-                />
-              </span>
-              <span className="anchor">
-                <GoogleLogin
-                  clientId={process.env.REACT_APP_CLIENT_ID}
-                  buttonText=""
-                  render={(renderProps) => (
-                    <FcGoogle
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                    />
-                  )}
-                  onSuccess={responseGoogle_signin}
-                  onFailure={responseGoogle_signin}
-                ></GoogleLogin>
-              </span>
-            </div>
+            
             <span className="span">or use your account</span>
             <input
               className="input"
