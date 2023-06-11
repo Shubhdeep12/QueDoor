@@ -60,8 +60,8 @@ Also if they don't want to upload a question they can also search for related qu
 
 ### Tools & Frameworks Used.
 
-- <b>Firebase</b> is used to host the <b>Frontend</b> of the Application.
-- <b>Heroku</b> is used to host <b>Backend</b> of the Application.
+- <b>Netlify</b> is used to host the <b>Frontend</b> of the Application.
+- <b>Render</b> is used to host <b>Backend</b> of the Application.
 - <b>VS Code</b> is used to develop the Application.
 - <b>React</b> and <b>Redux</b> is used to develop the Frontend of the Application.
 - <b>CSS</b> is used for styling the application
@@ -71,4 +71,4 @@ Also if they don't want to upload a question they can also search for related qu
 
 ### Link to App
 
-- <a href="https://quedoor-1.web.app/Home">Click Here</a>
+- <a href="https://master--famous-starlight-dd0652.netlify.app/">Click Here</a>
