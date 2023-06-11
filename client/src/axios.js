@@ -1,7 +1,7 @@
 var axioss = require("axios");
 
 var axios = axioss.create({
-  baseURL: "https://quedoor.herokuapp.com/",
+  baseURL: process.env.REACT_APP_BASE_URL,
   // "https://quedoor.herokuapp.com/",
   /* other custom settings */
   headers: {

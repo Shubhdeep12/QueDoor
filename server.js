@@ -19,7 +19,7 @@ const cookieParser = require("cookie-parser");
 
 //middleware
 //app.use(cors({ credentials: true, origin: process.env.FRONT_END_URL }));
-app.use(cors({ credentials: true, origin: "https://quedoor-1.web.app" }));
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use(cookieParser());
 
 app.use("*", cloudinaryConfig);
